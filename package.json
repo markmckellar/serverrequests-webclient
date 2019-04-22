@@ -3,14 +3,14 @@
   "description": "A module for quick integration of a basic typescript client to connect to a generic json/api server",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "preversion": "",
-    "version": "git add -A src",
+    "version": "git add -A source",
     "postversion": "git push && git push --tags"
   },
   "files": [
