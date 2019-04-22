@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["es6","dom"],
+      "module": "commonjs",
+      "declaration": true,
+      "outDir": "./lib",
+      "strict": true,
+      "strictPropertyInitialization":false,
+      "suppressImplicitAnyIndexErrors":true,
+      "strictNullChecks":false
+      /*,
+      "types": ["mocha","node"],
+      //"sourceMap": true,
+      //"module": "commonjs",
+      "moduleResolution": "node",
+      "isolatedModules": false,
+      "jsx": "react",
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      //"declaration": false,
+      "noImplicitAny": false,
+      "removeComments": true,
+      "noLib": false,
+      "preserveConstEnums": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "noUnusedParameters": false,
+      "noUnusedLocals": true,
+      "allowSyntheticDefaultImports": true
+      */
+    },
+    "include": ["source"],
+    "exclude": ["node_modules", "**/__tests__/*"]
+  }

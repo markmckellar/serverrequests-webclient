@@ -1,6 +1,6 @@
-///<reference path="../../../build/node_modules/@types/jquery/index.d.ts"/>
-///<reference path="../../../build/node_modules/@types/datatables.net/index.d.ts"/>
-///<reference path="../../../build/node_modules/@types/jqueryui/index.d.ts"/>
+///<reference path="../../../node_modules/@types/jquery/index.d.ts"/>
+///<reference path="../../../node_modules/@types/datatables.net/index.d.ts"/>
+///<reference path="../../../node_modules/@types/jqueryui/index.d.ts"/>
 
 import { ServerInfo } from "../server/serverinfo";
 import { ServerRequests } from "../server/serverrequests";
@@ -297,7 +297,7 @@ public setLoginDetails(afterFunction:()=>void):void
 	});	
 }
 
-    public translateObjectsToTableArray(data,columnData:Array<ColumnData>):any
+    public translateObjectsToTableArray(data:any,columnData:Array<ColumnData>):any
 	{
 		let dataRows = new Array();
 		for(let i=0;i<data.length;i++)

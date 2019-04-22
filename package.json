@@ -1,0 +1,51 @@
+{
+  "name": "serverrequests-webclient",
+  "description": "A script to for quick integration of a basic typescript client to connect to a generic json/api server",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "preversion": "",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+
+
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markmckellar/serverrequests-webclient.git"
+  },
+  "keywords": ["client", "TypeScript","json"],
+  "author": "Mark McKellar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markmckellar/serverrequests-webclient/issues"
+  },
+  "homepage": "https://github.com/markmckellar/serverrequests-webclient#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/jquery": "3.3.22",
+    "jest": "^24.7.1",
+    "jsdom": "^11.5.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.4"
+  },
+  "dependencies": {
+    "@types/datatables.net": "1.10.13",
+    "@types/dateformat": "1.0.1",
+    "@types/jquery": "3.3.22",
+    "@types/jqueryui": "1.12.6",
+    "@types/matter-js": "^0.9.33",
+    "@types/node": "^11.13.6",
+    "dateformat": "3.0.3",
+    "jdom": "^1.0.11",
+    "window-or-global": "^1.0.1"
+  }
+}

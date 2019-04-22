@@ -1,4 +1,4 @@
-///<reference path="../../../build/node_modules/@types/jquery/index.d.ts"/>
+///<reference path="../../../node_modules/@types/jquery/index.d.ts"/>
 
 import { ServerRequest } from "./serverrequest";
 import { ServerInfo } from "./serverinfo";

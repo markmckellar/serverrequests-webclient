@@ -1,6 +1,6 @@
-///<reference path="../../build/node_modules/@types/jquery/index.d.ts"/>
-///<reference path="../../build/node_modules/@types/datatables.net/index.d.ts"/>
-///<reference path="../../build/node_modules/@types/jqueryui/index.d.ts"/>
+///<reference path="../../node_modules/@types/jquery/index.d.ts"/>
+///<reference path="../../node_modules/@types/datatables.net/index.d.ts"/>
+///<reference path="../../node_modules/@types/jqueryui/index.d.ts"/>
 
 import { ServerRequests } from "../common/server/serverrequests";
 import { UserManagement } from "../common/user/usermanagement";
@@ -92,3 +92,4 @@ export class ClientApp extends BaseApp {
 }
 
 window['clientApp'] = new ClientApp("clientApp",window);
+
