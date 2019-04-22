@@ -1,8 +1,9 @@
 {
   "name": "serverrequests-webclient",
-  "description": "A script to for quick integration of a basic typescript client to connect to a generic json/api server",
+  "description": "A module for quick integration of a basic typescript client to connect to a generic json/api server",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "version": "1.0.0",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
@@ -15,14 +16,15 @@
   "files": [
     "lib/**/*"
   ],
-
-
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/markmckellar/serverrequests-webclient.git"
   },
-  "keywords": ["client", "TypeScript","json"],
+  "keywords": [
+    "client",
+    "TypeScript",
+    "json"
+  ],
   "author": "Mark McKellar",
   "license": "MIT",
   "bugs": {
