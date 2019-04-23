@@ -1,4 +1,6 @@
 
+export { ServerProperty } from "./common/server/serverproperty";
+export { ServerProperties } from "./common/server/serverproperties";
 export { ServerRequests } from "./common/server/serverrequests";
 export { UserManagement } from "./common/user/usermanagement";
 export { UserManagementOAuth2 } from "./common/user/usermanagementoauh2";
