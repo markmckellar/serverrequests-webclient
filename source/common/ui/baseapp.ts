@@ -41,6 +41,7 @@ export abstract class BaseApp {
 	public abstract initServerRequests():ServerRequests;
 	public abstract initUserManagement():UserManagement;
 	public abstract initClientAppPost():void;
+	public abstract processServerInfoResults(results:any):void;
 
 
 
@@ -130,50 +131,19 @@ export abstract class BaseApp {
 		);
 	}
 
+
 	public checkServerInfo(): void {	
 		let self = this;
 		this.serverRequests.executeServerGet(
 			"check server info",
 			"/service/serverproperties",
-			function(sessionDetails)
+			function(results)
 			{
-				console.log("checkServerInfo:sessionDetails="+sessionDetails);
-
-				let serverProperties:ServerProperties = new ServerProperties(sessionDetails);
-
-				let serverInfoJson = JSON.parse( serverProperties.getPropertyValue('telegc','server_info_json') );					
-				let configName:string = serverProperties.getPropertyValue('General','Configuration Name');	
-				let message = "";
-				
-				if(serverInfoJson.headerText) message = "<b>"+serverInfoJson.headerText+"</b>";
-				
-				if( (self.serverInfo.origin+self.serverInfo.pathname)!=serverInfoJson.serverUrl) 
-				{
-					if(message!="") message += "<b> : </b>";
-					message += "<i><b>Non standard access URL for "+configName+" enviroment, standard URL is :</b> " +serverInfoJson.serverUrl+"</i>";
-				}
-				if(message!="")
-				{				
-					$( ".common_server_message" ).html(message);
-					$( ".common_server_message" ).css( "color",serverInfoJson.fgcolor);
-					$( ".common_server_message" ).css( "background-color",serverInfoJson.bgcolor);
-					$( ".common_server_message" ).css( "border", "3px solid "+serverInfoJson.fgcolor );
-				}
+				self.processServerInfoResults(results);
 			}
 		);
 	}
 
-	public isInformaticsUser():boolean {
-		return( this.userManagement.user.doesUserHaveRole("telegc","informatics") );
-	}
-
-	public showInformaticsText(templateDiv:JQuery,textDiv:string,showDiv:string,text:string) {
-		if(this.isInformaticsUser())
-		{
-			$(templateDiv).find(textDiv).val(text);
-			$(templateDiv).find(showDiv).show();
-		}
-	}
 	
 	public addTemplate(object:any,
 		addToDiv:JQuery,
@@ -187,8 +157,7 @@ export abstract class BaseApp {
 		for(let i:number=0;i<tags.length;i++)
 		{
 			let tag:any = tags[i];
-			let id:string = "#"+tagPrefix+tag;
-			//console.log("replacing "+id+" with:"+object[tag]+" type is:"+typeof(object[tag]));		
+			let id:string = "#"+tagPrefix+tag;	
 			$(template).find(id).html(object[tag]);
 		}
 		postEditFunction(template);
@@ -202,52 +171,7 @@ export abstract class BaseApp {
 		return(addToDiv);
 	}
 
-
-	public  showSessionInfoDialog():void {
-		let self = this;
-		this.serverRequests.executeServerGet(
-			"session details",
-			"/service/serverinfo",
-			function(sessionDetails)
-			{
-				let detailMap:any = 
-				{
-					/*
-					userName:sessionDetails.tgWebSessionInfo.userName,
-					clientVersion:"clientApp : v"+self.clientVersion.version,
-					enviorment:self.serverProperties.getPropertyValue('General','Configuration Name'),
-					serverVersion:sessionDetails.serverVersion,
-					sessionCreationTime:sessionDetails.sessionCreationTime,
-					*/
-				};
-				let templateDiv = self.addTemplate(
-					detailMap,
-					$('#sessionInfoDialog'),
-					'#sessionInfoDialogTemplate',
-					'sessionInfoDialogTemplate-',
-					false,
-					function(templateJQuery){});
-					
-				//sessionDetails.tgServer = self.serverInfo;
-				self.showInformaticsText( templateDiv,"#currentSessionJsonText","#currentSessionJsonDiv",JSON.stringify(sessionDetails) );				
-					
-				$('#sessionInfoDialog').dialog({
-					title: "session info",
-					height:'auto',
-					width:'auto',
-					modal:true,	    	   
-				});			
-		});	
-	}
-
-
-public showInformaticsDivs(parentDiv:string):void
-{	
-	if(this.isInformaticsUser())
-	{
-		$(parentDiv).find(".common_informatics_only").show();
-	}
-}
+	
 
 
 public logOutFunction(message:string):void {
