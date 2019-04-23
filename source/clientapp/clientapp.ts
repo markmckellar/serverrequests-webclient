@@ -8,21 +8,22 @@ import { ClientVersion } from "./clientversion";
 import { UserManagementOAuth2 } from "../common/user/usermanagementoauh2";
 import { ServerRequestsOAuth2 } from "../common/server/serverrequestsoauth2";
 import { BaseApp } from "../common/ui/baseapp";
+import { ServerRequestHolder } from "../common/server/serverrequestholder";
 
 export class ClientApp extends BaseApp {
 
 	private _serverRequestsOAuth2: ServerRequestsOAuth2;	
 	private _userManagementOAuth2: UserManagementOAuth2;
+	
 
 	constructor(name:string,window:Window)
 	{
 		super(name,window,new ClientVersion());
 		console.log("ClientApp constructor");
 		let self = this;
-		
-		this.serverRequestsOAuth2 = new ServerRequestsOAuth2(
-            this.serverInfo,
-            "#ServerRequestsLoadingDiv",
+
+		this.serverRequestHolder = new ServerRequestHolder(
+			"#ServerRequestsLoadingDiv",
             "#ServerRequestsLoadingListDiv",
             "#ServerRequestsRetry-template",
             "#ServerRequestsClear-template",
@@ -30,6 +31,11 @@ export class ClientApp extends BaseApp {
             ".common_server_error_wrapper",
             ".common_error_message",
 			".common_error_button",
+		);
+		
+		this.serverRequestsOAuth2 = new ServerRequestsOAuth2(
+            this.serverInfo,
+            this.serverRequestHolder,
 			function() { return("time="+new Date().getTime()+"&clientversion="+self.clientVersion.version); },
 			function(message:string):string { return(self.showLoginRedirectWithMessage(message)); } ,
 		);
@@ -67,6 +73,9 @@ export class ClientApp extends BaseApp {
 
 	}
 
+	public initServerRequestHolder():ServerRequestHolder {
+		return(this.serverRequestHolder);
+	}
 	public initServerRequests():ServerRequests {
 		return(this.serverRequestsOAuth2);
 	}

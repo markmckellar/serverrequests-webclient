@@ -2,32 +2,19 @@
 
 import { ServerInfo } from "./serverinfo";
 import { ServerRequestsBase } from "./serverrequestsbase";
+import { ServerRequestHolder } from "./serverrequestholder";
 
 export class ServerRequests extends ServerRequestsBase {
 
     constructor(
             serverInfo:ServerInfo,
-            loadingDiv:string,
-            loadingListDiv:string,
-            retryTemplateName:string,
-            clearTemplateName:string,
-            redirectTemplateName:string,
-            errorWrapperClassName:string,
-            errorMessageClassName:string,
-            errorButtonClassName:string,
+            serverRequestHolder:ServerRequestHolder,
             standardUrlExtensionFunction: () => string,
             signInfunction: (message:string) => string) 
     {
         super(
             serverInfo,
-            loadingDiv,
-            loadingListDiv,
-            retryTemplateName,
-            clearTemplateName,
-            redirectTemplateName,
-            errorWrapperClassName,
-            errorMessageClassName,
-            errorButtonClassName,
+            serverRequestHolder,
             standardUrlExtensionFunction,
             signInfunction
         );

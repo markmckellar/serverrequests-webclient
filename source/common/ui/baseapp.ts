@@ -9,6 +9,7 @@ import { ServerProperties } from "../server/serverproperties";
 
 import { ColumnData } from "./columndata";
 import { VersionBase } from "../server/versionbase";
+import { ServerRequestHolder } from "../server/serverrequestholder";
 
 export abstract class BaseApp {
 
@@ -19,6 +20,7 @@ export abstract class BaseApp {
 	private _userManagement: UserManagement;
 	private _clientVersion: VersionBase;
 	private _serverProperties: ServerProperties;
+	private _serverRequestHolder: ServerRequestHolder;
 	private _documentDataIdLookup: any;
 	private _loginDetails: any;
 	
@@ -35,6 +37,7 @@ export abstract class BaseApp {
 		this.loginDetails = {};
 	}
 
+	public abstract initServerRequestHolder():ServerRequestHolder;
 	public abstract initServerRequests():ServerRequests;
 	public abstract initUserManagement():UserManagement;
 	public abstract initClientAppPost():void;
@@ -43,6 +46,7 @@ export abstract class BaseApp {
 
 	public initClientApp():void
 	{
+		this.serverRequestHolder = this.initServerRequestHolder();
 		this.serverRequests = this.initServerRequests();
 		this.userManagement = this.initUserManagement();
 
@@ -318,6 +322,12 @@ public setLoginDetails(afterFunction:()=>void):void
 		});	        		
 	}
 
+	public get serverRequestHolder(): ServerRequestHolder {
+		return this._serverRequestHolder;
+	}
+	public set serverRequestHolder(value: ServerRequestHolder) {
+		this._serverRequestHolder = value;
+	}
 	
 	public logSession(logMessage:string,session:any)
 	{
