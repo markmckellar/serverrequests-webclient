@@ -66,7 +66,6 @@ export class UserManagement extends UserManagementBase {
                     let userJson =  JSON.parse(results.results);
                     self.user = new User( userJson.user );
                     
-                    self.user = new User( JSON.parse(results.results) );
                     self.user.password = "xxxxxxx";
                     self.user.validated = true;
                     self.postValidatedLoginFunction(true);

@@ -3,7 +3,7 @@
   "description": "A module for quick integration of a basic typescript client to connect to a generic json/api server",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
@@ -33,7 +33,6 @@
   "homepage": "https://github.com/markmckellar/serverrequests-webclient#readme",
   "devDependencies": {
     "@types/jest": "^24.0.11",
-    "@types/jquery": "3.3.22",
     "jest": "^24.7.1",
     "jsdom": "^11.5.1",
     "ts-jest": "^24.0.2",

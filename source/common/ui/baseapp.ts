@@ -21,7 +21,6 @@ export abstract class BaseApp {
 	private _clientVersion: VersionBase;
 	private _serverProperties: ServerProperties;
 	private _serverRequestHolder: ServerRequestHolder;
-	private _documentDataIdLookup: any;
 	private _loginDetails: any;
 	
 	constructor(name:string,window:Window,clientVersion:VersionBase) {
@@ -33,7 +32,6 @@ export abstract class BaseApp {
 		console.log("BaseApp constructor:"+this.serverInfo.servicepath);
 		this.serverInfo.servicepath = "";
 
-		this.documentDataIdLookup = {};
 		this.loginDetails = {};
 	}
 
@@ -78,12 +76,6 @@ export abstract class BaseApp {
 	public set loginDetails(value: any) {
 		this._loginDetails = value;
 	}	
-	public get documentDataIdLookup(): any {
-		return this._documentDataIdLookup;
-	}
-	public set documentDataIdLookup(value: any) {
-		this._documentDataIdLookup = value;
-	}
 	
 	public get clientVersion(): VersionBase {
 		return this._clientVersion;
