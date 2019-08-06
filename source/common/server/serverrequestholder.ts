@@ -41,9 +41,9 @@ export class ServerRequestHolder {
     public renderLoadingItemDiv():void {
         let listHtml = "";
         let retryDiv = $(this.retryTemplateName).find(this.errorWrapperClassName).clone();
-        if(retryDiv==null) throw Error("Did not find element="+this.retryTemplateName+" class="+this.errorWrapperClassName);
+        if(!retryDiv) throw Error("Did not find element="+this.retryTemplateName+" class="+this.errorWrapperClassName);
         let clearDiv = $(this.clearTemplateName).find(this.errorWrapperClassName).clone();
-        if(retryDiv==null) throw Error("Did not find element="+this.clearTemplateName+" class="+this.errorWrapperClassName);
+        if(!clearDiv) throw Error("Did not find element="+this.clearTemplateName+" class="+this.errorWrapperClassName);
         let redirectDiv = $(this.redirectTemplateName).find(this.errorWrapperClassName).clone();
         let foundIssue:boolean = false;        
 
